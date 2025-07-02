@@ -18,5 +18,6 @@ func TestRandomNameTransformer_GetFullName(t *testing.T) {
 	res, err := rnt.GetFullName("", []byte{})
 	require.NoError(t, err)
 	require.True(t, slices.Contains(DefaultFirstNamesMale, res["FirstName"]) || slices.Contains(DefaultFirstNamesFemale, res["FirstName"]))
-	require.True(t, slices.Contains(DefaultLastNames, res["LastName"]))
+	require.True(t, slices.Contains(DefaultLastNamesMale, res["LastName"]) || slices.Contains(DefaultLastNamesFemale, res["LastName"]))
+	require.True(t, slices.Contains(DefaultMiddleNamesMale, res["MiddleName"]) || slices.Contains(DefaultMiddleNamesFemale, res["MiddleName"]))
 }
