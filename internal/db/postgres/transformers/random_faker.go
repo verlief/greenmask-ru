@@ -17,6 +17,7 @@ package transformers
 import (
 	"context"
 	"fmt"
+	"math/rand"
 
 	"github.com/go-faker/faker/v4"
 	"github.com/go-faker/faker/v4/pkg/options"
@@ -48,6 +49,7 @@ const (
 	RandomPhoneNumberTransformerName         = "RandomPhoneNumber"
 	RandomTollFreePhoneNumberTransformerName = "RandomTollFreePhoneNumber"
 	RandomE164PhoneNumberTransformerName     = "RandomE164PhoneNumber"
+	RandomRuPhoneNumberTransformerName       = "RandomRuPhoneNumber"
 )
 
 type FakerFunc func(opts ...options.OptionFunc) string
@@ -182,6 +184,13 @@ var FakerTransformersDes = map[string]*FakerTransformerDef{
 		Generator:      faker.E164PhoneNumber,
 		SupportedTypes: []string{"text", "varchar", "char", "bpchar", "citext"},
 		Description:    "Generates a random phone number in E.164 format.",
+	},
+	RandomRuPhoneNumberTransformerName: {
+		Generator: func(opts ...options.OptionFunc) string {
+			return fmt.Sprintf("7%d%d%d%d", rand.Intn(900)+100, rand.Intn(900)+100, rand.Intn(90)+10, rand.Intn(90)+10)
+		},
+		SupportedTypes: []string{"text", "varchar", "char", "bpchar", "citext"},
+		Description:    "Generates a random phone number in Russian format.",
 	},
 }
 
